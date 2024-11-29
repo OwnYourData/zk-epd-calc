@@ -1,0 +1,20 @@
+[package]
+name = "zk_building_part"
+version = "0.3.0"
+edition = "2021"
+
+[features]
+guest-methods = []
+
+[build-dependencies]
+risc0-build = { version = "1.0.1" }
+
+[package.metadata.risc0]
+methods = ["guest"]
+
+[dependencies]
+anyhow = "1.0.89"
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.128"
+zk_epdcalc = {path = "../zk_epdcalc" }
+zk_building_part_guest = {path = "guest"}

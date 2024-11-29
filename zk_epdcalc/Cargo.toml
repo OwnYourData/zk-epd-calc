@@ -1,0 +1,19 @@
+[package]
+name = "zk_epdcalc"
+version = "0.3.1"
+edition = "2021"
+
+[dependencies]
+risc0-zkvm = { version = "1.0.1" }
+serde = { version = "1.0", features = ["derive", "rc"] }
+anyhow = "1.0.86"
+serde_json = "1.0.117"
+tokio = { version = "1.37.0", features = ["full", "sync"] }
+axum = { version = "0.7.5", features = ["macros"] }
+ciborium = "0.2.2"
+uuid = { version = "1.8.0",features = ["v4", "serde"] }
+thiserror = "1.0.61"
+base64 = "0.22.1"
+futures = "0.3.31"
+tracing = "0.1.40"
+zk_epdcalc_core = {path = "../zk_epdcalc_core"}

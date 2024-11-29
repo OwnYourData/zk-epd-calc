@@ -1,0 +1,16 @@
+# ignore target folders
+target
+
+# ignoer deployment folders
+deployment
+
+# ignore docs and licence and Dockerfile
+Readme.md
+LICENSE
+Dockerfile
+Dockerfile.*
+.dockerignore
+
+# ignore config files
+.*
+rust-toolchain.toml

@@ -1,0 +1,20 @@
+[package]
+name = "zkEPDCalc"
+version = "0.3.0"
+edition = "2021"
+
+[dependencies]
+risc0-zkvm = { version = "1.0.1", features = ["client"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde = { version = "1.0", features = ["derive", "rc"] }
+axum = { version = "0.7.5", features = ["macros"] }
+tokio = { version = "1.37.0", features = ["full", "sync"] }
+serde_json = "1.0.117"
+anyhow = "1.0.86"
+ciborium = "0.2.2"
+zk_epdcalc = {path = "../zk_epdcalc" }
+uuid = { version = "1.8.0",features = ["v4", "serde"] }
+tracing = "0.1.40"
+futures = "0.3.30"
+thiserror = "1.0.61"
+zk_building_part = {path = "../zk_building_part"}
