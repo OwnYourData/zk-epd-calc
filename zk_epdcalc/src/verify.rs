@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 Thomas Preindl
+ * MIT License (see LICENSE or https://mit-license.org)
+ */
+
 use crate::error::AppError;
 use anyhow::Result;
 use base64::engine::general_purpose::STANDARD as BASE64_STANDARD;

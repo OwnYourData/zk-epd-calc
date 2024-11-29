@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 Thomas Preindl
+ * MIT License (see LICENSE or https://mit-license.org)
+ */
+
 use crate::error::AppError;
 use crate::proving;
 use crate::proving::{ProvingService, TaskStatus};

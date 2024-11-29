@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 Thomas Preindl
+ * MIT License (see LICENSE or https://mit-license.org)
+ */
+
 use risc0_zkvm::guest::env;
 use zk_building_part_guest::{BuildingPartDefinition, BuildingPartEPD};
 

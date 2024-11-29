@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 Thomas Preindl
+ * MIT License (see LICENSE or https://mit-license.org)
+ */
+
 use crate::proving::{new_config as proof_config, ProofConfig, ProofInput, ProofResponse};
 use crate::verify::{new_config as verify_config, VerifyConfig};
 use axum::body::Bytes;

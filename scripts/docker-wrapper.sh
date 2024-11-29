@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+#
+# Copyright (c) 2024 Thomas Preindl
+# MIT License (see LICENSE or https://mit-license.org)
+#
+
 set -eoux
 
 # Check if the first argument is "--version"

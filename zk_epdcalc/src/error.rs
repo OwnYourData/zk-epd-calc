@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 Thomas Preindl
+ * MIT License (see LICENSE or https://mit-license.org)
+ */
+
 use crate::handlers::VerificationResponse;
 use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};

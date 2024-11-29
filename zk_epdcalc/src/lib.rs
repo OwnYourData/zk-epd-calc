@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 Thomas Preindl
+ * MIT License (see LICENSE or https://mit-license.org)
+ */
+
 use crate::handlers::{create_epd, get_epd_creation, get_epd_result, post_verify_epd, start_epd_creation};
 use crate::proving::ProvingService;
 use crate::requests::ConfigFactoryMap;

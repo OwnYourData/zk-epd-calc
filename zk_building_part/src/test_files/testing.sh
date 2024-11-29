@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#
+# Copyright (c) 2024 Thomas Preindl
+# MIT License (see LICENSE or https://mit-license.org)
+#
+
 host="http://127.0.0.1:3000"
 
 zk_bp_filename=$(mktemp)
