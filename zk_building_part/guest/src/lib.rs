@@ -3,12 +3,12 @@
  * MIT License (see LICENSE or https://mit-license.org)
  */
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 use anyhow::{anyhow, Result};
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 use std::collections::HashMap;
 use std::fmt::{Debug, Formatter};
 use std::sync::Arc;
@@ -16,7 +16,7 @@ use zk_epdcalc_core::VerifiedEpd;
 
 #[derive(Deserialize, Serialize, Debug)]
 #[cfg_attr(
-    target_arch = "x86_64",
+    any(target_arch = "x86_64", target_arch = "aarch64"),
     serde(try_from = "CreateBuildingPartRequestDTO")
 )]
 pub struct BuildingPartDefinition {
@@ -26,7 +26,7 @@ pub struct BuildingPartDefinition {
     pub used_material: Vec<MaterialUse>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 impl TryFrom<CreateBuildingPartRequestDTO> for BuildingPartDefinition {
     type Error = anyhow::Error;
 
@@ -75,14 +75,14 @@ pub struct ConcreteMixture {
     pub factory: String,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct CreateBuildingPartRequestDTO {
     pub definition: BuildingPartDefinitionDto,
     pub dpps: Vec<DidMappingDto<ConcreteMixtureDppDto>>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 impl CreateBuildingPartRequestDTO {
     fn get_did_mapping(&self, did: &str) -> Result<&DidMappingDto<ConcreteMixtureDppDto>> {
         self.dpps
@@ -92,14 +92,14 @@ impl CreateBuildingPartRequestDTO {
     }
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct DidMappingDto<T> {
     pub did: String,
     pub dpp_vp: VerifiablePresentationDTO<T>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 impl<T> DidMappingDto<T> {
     fn get_vc(&self) -> Result<&VerifiableCredentialDTO<T>> {
         self.dpp_vp.vcs.first().ok_or(anyhow!(
@@ -109,21 +109,21 @@ impl<T> DidMappingDto<T> {
     }
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct VerifiablePresentationDTO<Subject> {
     #[serde(rename = "verifiableCredential")]
     pub vcs: Vec<VerifiableCredentialDTO<Subject>>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct VerifiableCredentialDTO<Subject> {
     #[serde(rename = "credentialSubject")]
     pub credential_subject: Subject,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct BuildingPartDefinitionDto {
     pub date: Box<str>,
@@ -134,7 +134,7 @@ pub struct BuildingPartDefinitionDto {
     pub used_material: Vec<MaterialUseDto>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct MaterialUseDto {
     pub amount: u32,
@@ -142,7 +142,7 @@ pub struct MaterialUseDto {
     pub concrete_dpp_did: String,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Debug)]
 pub struct ConcreteMixtureDppDto {
     pub id: String,
@@ -170,7 +170,7 @@ impl PartialEq for ConcreteEpd {
 
 impl Eq for ConcreteEpd {}
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize, Serialize, Clone)]
 pub struct ZkConcreteEpd {
     #[serde(flatten)]
@@ -178,14 +178,14 @@ pub struct ZkConcreteEpd {
     pub zkp: Box<str>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 impl Debug for ZkConcreteEpd {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         self.epd.fmt(f)
     }
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 impl VerifiedEpd<ConcreteEpd> for ZkConcreteEpd {
     fn get_zkp(&self) -> &str {
         &self.zkp
@@ -246,7 +246,7 @@ pub struct ConstructionSiteEnergy {
 
 #[derive(Deserialize, Serialize, Debug)]
 #[cfg_attr(
-    target_arch = "x86_64",
+    any(target_arch = "x86_64", target_arch = "aarch64"),
     serde(try_from = "CreateBuildingDefinitionDto")
 )]
 pub struct BuildingDefinition {
@@ -256,7 +256,7 @@ pub struct BuildingDefinition {
     pub site_energy: Vec<ConstructionSiteEnergy>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 impl TryFrom<CreateBuildingDefinitionDto> for BuildingDefinition {
     type Error = anyhow::Error;
 
@@ -326,7 +326,7 @@ impl TryFrom<CreateBuildingDefinitionDto> for BuildingDefinition {
     }
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize)]
 struct CreateBuildingDefinitionDto {
     definition: BuildingDefinitionDto,
@@ -336,7 +336,7 @@ struct CreateBuildingDefinitionDto {
     site_energy_dpps: Vec<DidMappingDto<EnergyDpp>>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize)]
 struct BuildingDefinitionDto {
     date: Box<str>,
@@ -347,14 +347,14 @@ struct BuildingDefinitionDto {
     site_energy_dids: Vec<ConstructionSiteEnergyDto>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize)]
 struct BuildingPartDppDto {
     #[serde(rename = "buildingPartDppDid")]
     building_part_dpp_did: Box<str>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize)]
 struct ConstructionSiteEnergyDto {
     amount: u32,
@@ -362,7 +362,7 @@ struct ConstructionSiteEnergyDto {
     dpp_did: Box<str>,
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(any(target_arch = "x86_64", target_arch = "aarch64"))]
 #[derive(Deserialize)]
 struct EnergyDpp {
     gwp: u32,

@@ -12,6 +12,6 @@ risc0-zkvm = { version = "1.0.1", default-features = false, features = ['std'] }
 zk_epdcalc_core = {path = "../../zk_epdcalc_core"}
 serde = { version = "1.0.210", features = ["derive", "rc"] }
 
-[target.'cfg(target_arch = "x86_64")'.dependencies]
+[target.'cfg(any(target_arch = "x86_64", target_arch = "aarch64"))'.dependencies]
 anyhow = "1.0.89"
 itertools = "0.13.0"
